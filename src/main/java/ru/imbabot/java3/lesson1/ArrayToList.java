@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ArrayToList<T> {
 
-    public List arrayToList(T[]arr){
+    public <T> List<T> arrayToList(T[]arr){
         List<T> list = Arrays.asList(arr);
         return list;
     }

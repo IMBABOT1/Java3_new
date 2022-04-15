@@ -20,7 +20,7 @@ public class Box<T>  {
     }
 
     public boolean compare(Box box){
-       return Math.abs(this.getWeight() - box.getWeight()) < 0000000.1f;
+       return (this.getWeight() - box.getWeight()) < 0000000.1f;
     }
 
     public void addFruit(Fruit fruit){
@@ -28,20 +28,13 @@ public class Box<T>  {
     }
 
 
-    public Box<T> pour(Box<?> box){
-        this.list.clear();
-        for (Fruit f: box.list){
-            list.add(f);
+    public void pour(Box<T> box){
+        if (box == this){
+            return;
         }
-        return this;
+        box.list.addAll(this.list);
+        this.list.clear();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(list.get(0));
-
-        return sb.toString();
-    }
 }

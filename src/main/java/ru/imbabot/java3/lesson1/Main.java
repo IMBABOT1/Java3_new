@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 public class Main {
 
-    private static void swap(int[] arr, int first, int second){
-        int temp = arr[first];
+    private static void swap(Object[] arr, int first, int second){
+        Object temp = arr[first];
         arr[first] = arr[second];
         arr[second] = temp;
     }
 
 
     public static void main(String[] args) {
-        int[] ints = new int[]{1,2,3,4,5};
+        Integer[]  ints = new Integer[]{1,2,3,4,5};
         swap(ints, 0, 1);
         System.out.println(Arrays.toString(ints));
     }

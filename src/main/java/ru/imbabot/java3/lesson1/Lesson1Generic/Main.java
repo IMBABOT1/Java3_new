@@ -15,10 +15,14 @@ public class Main {
         orangeBox.addFruit(new Orange());
         orangeBox.addFruit(new Orange());
 
+        System.out.println(orangeBox.pour(appleBox));
+        System.out.println(orangeBox.getWeight());
         System.out.println(appleBox.getWeight());
-        System.out.println(appleBox.compare(orangeBox));
-        System.out.println(appleBox.pour(orangeBox));
+
         System.out.println(orangeBox);
+        System.out.println(appleBox);
+
+        System.out.println(appleBox.compare(orangeBox));
 
     }
 }
