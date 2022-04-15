@@ -1,9 +1,8 @@
 package ru.imbabot.java3.lesson1;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class lesson1 {
+public class Main {
 
     private static void swap(int[] arr, int first, int second){
         int temp = arr[first];
