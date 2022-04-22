@@ -15,7 +15,7 @@ public class Main {
         orangeBox.addFruit(new Orange());
         orangeBox.addFruit(new Orange());
 
-        System.out.println(orangeBox.pour(appleBox));
+
         System.out.println(orangeBox.getWeight());
         System.out.println(appleBox.getWeight());
 
