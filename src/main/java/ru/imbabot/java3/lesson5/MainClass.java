@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MainClass {
     public static final int CARS_COUNT = 4;
@@ -22,12 +24,12 @@ public class MainClass {
             new Thread(cars[i]).start();
         }
 
-        System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
 
 class Car implements Runnable {
     private static int CARS_COUNT;
+    AtomicInteger am = new AtomicInteger();
     static {
         CARS_COUNT = 0;
     }
@@ -49,6 +51,7 @@ class Car implements Runnable {
 
     CyclicBarrier cb = new CyclicBarrier(1);
     CountDownLatch cdl = new CountDownLatch(4);
+
     @Override
     public void run() {
         try {
@@ -58,13 +61,15 @@ class Car implements Runnable {
             System.out.println(this.name + " готов");
             cdl.countDown();
             cdl.await(2, TimeUnit.SECONDS);
-            System.out.println("Гонка началась");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
         }
+
+
 
     }
 }
@@ -84,11 +89,16 @@ class Road extends Stage {
     }
 
     CountDownLatch cdl = new CountDownLatch(4);
-    AtomicInteger winner = new AtomicInteger();
-    Race race = new Race();
+    AtomicInteger am = new AtomicInteger();
+    AtomicInteger value = new AtomicInteger();
+    AtomicInteger temp = new AtomicInteger();
     @Override
     public void go(Car c) {
         try {
+            temp.incrementAndGet();
+            if (temp.get() == 1) {
+                System.out.println("Гонка началась");
+            }
             CyclicBarrier cb = new CyclicBarrier(1);
             System.out.println(c.getName() + " начал этап: " + description);
             try {
@@ -101,7 +111,17 @@ class Road extends Stage {
             System.out.println(c.getName() + " закончил этап: " + description);
             cdl.await(2, TimeUnit.SECONDS);
 
-            System.out.println(Race.getStage());
+
+            am.incrementAndGet();
+
+            if (am.get() == 1){
+                System.out.println("WIN:" + c.getName());
+            }
+
+            value.incrementAndGet();
+            if (value.get() == 4){
+                System.out.println("Гонка закончилась");
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -134,14 +154,10 @@ class Tunnel extends Stage {
     }
 }
 class Race {
-    private static ArrayList<Stage> stages;
-    public ArrayList<Stage> getStages() { return stages; }
+    private static   ArrayList<Stage> stages;
+    public static   ArrayList<Stage> getStages() { return stages; }
     public Race(Stage... stages) {
         this.stages = new ArrayList<>(Arrays.asList(stages));
-    }
-
-    public static Stage getStage(){
-        return stages.get(stages.size()-1);
     }
 
 }
