@@ -69,8 +69,6 @@ class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
 
-
-
     }
 }
 abstract class Stage {
@@ -113,13 +111,11 @@ class Road extends Stage {
 
 
             am.incrementAndGet();
-
-            if (am.get() == 1){
+            if (am.get() == 1 && description.equals("Дорога 40 метров")){
                 System.out.println("WIN:" + c.getName());
             }
-
             value.incrementAndGet();
-            if (value.get() == 4){
+            if (value.get() == 4 && description.equals("Дорога 40 метров")){
                 System.out.println("Гонка закончилась");
             }
 
