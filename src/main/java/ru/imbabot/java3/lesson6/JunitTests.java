@@ -8,6 +8,8 @@ public class JunitTests {
 
     public void method(int[]arr){
         List<Integer> elements = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+
         for (int i = 0; i <arr.length ; i++) {
             elements.add(arr[i]);
         }
@@ -17,5 +19,14 @@ public class JunitTests {
                 throw new RuntimeException("Must contain at least one 4");
             }
         }
+
+        int index = elements.size() - 1;
+
+        while (elements.get(index) != 4){
+            result.add(elements.get(index));
+            index--;
+        }
+
+        System.out.println(result);
     }
 }
