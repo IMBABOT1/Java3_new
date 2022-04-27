@@ -27,6 +27,18 @@ public class JunitTests {
             index--;
         }
 
-        System.out.println(result);
+        int[]temp = new int[result.size()];
+        int[]tests = new int[result.size()];
+
+        for (int i = 0; i <temp.length ; i++) {
+            temp[i] = result.get(i);
+        }
+
+        for(int i = 0; i < temp.length / 2; i++) {
+            int t = temp[i];
+            temp[i] = temp[temp.length - i - 1];
+            temp[temp.length - i - 1] = t;
+        }
+
     }
 }

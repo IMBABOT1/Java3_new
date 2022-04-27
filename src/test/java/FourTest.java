@@ -12,7 +12,7 @@ public class FourTest {
                 {new int[]{1,5,4,3,5,4,4,8,9,4,0,3,2}, new int[]{3,2}},
                 {new int[]{8,2,4,36,585,4,32}, new int[]{32}},
                 {new int[]{8,2,36,585,4,32}, new RuntimeException()},
-                {new int[]{92,6,4,3,3,4,1,2,3,5,5,69,32}, new RuntimeException()}
+                {new int[]{92,6,4,3,3,4,1,2,3,5,5,69,32}, new int[]{1,2,3,5,5,69,32}}
         });
     }
 }
