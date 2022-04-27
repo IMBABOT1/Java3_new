@@ -41,6 +41,6 @@ public class TestOneOrFour {
 
     @Test
     public void containsFour(){
-        Assert.assertTrue(junitTests.oneOrFour(arr));
+        Assert.assertEquals(bool, junitTests.oneOrFour(arr));
     }
 }
