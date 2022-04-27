@@ -6,7 +6,7 @@ import java.util.List;
 
 public class JunitTests {
 
-    public void method(int[]arr){
+    public int[] method(int[]arr){
         List<Integer> elements = new ArrayList<>();
         List<Integer> result = new ArrayList<>();
 
@@ -39,6 +39,8 @@ public class JunitTests {
             temp[i] = temp[temp.length - i - 1];
             temp[temp.length - i - 1] = t;
         }
+
+        return temp;
 
     }
 }
