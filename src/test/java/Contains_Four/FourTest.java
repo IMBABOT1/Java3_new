@@ -1,3 +1,5 @@
+package Contains_Four;
+
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Assert;

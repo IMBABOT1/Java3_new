@@ -43,4 +43,25 @@ public class JunitTests {
         return temp;
 
     }
+
+    public boolean oneOrFour(int[] arr){
+        int one = 0;
+        int four = 0;
+        int temp = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 1){
+                one++;
+            }else if (arr[i] == 4){
+                four++;
+            }else {
+                temp++;
+            }
+        }
+
+        if ((one == 0 || four == 0) || temp != 0){
+            return false;
+        }
+        return true;
+    }
 }
