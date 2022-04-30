@@ -20,7 +20,10 @@ public class TestExecute {
             }
         }
 
-        System.out.println(before + " " + after);
+       if (before > 1 || after > 1){
+           throw new RuntimeException("Must be only one Before and only one after");
+       }
+
 
         int temp = 1;
         while (temp <= 10){
@@ -41,11 +44,6 @@ public class TestExecute {
         }
 
     }
-
-
-
-
-
 
 
     public static void main(String[] args) {
