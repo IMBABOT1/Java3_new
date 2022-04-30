@@ -8,6 +8,20 @@ public class TestExecute {
 
     public static void start(Class c) {
         Method[] methods = c.getDeclaredMethods();
+        int before = 0;
+        int after = 0;
+
+        for (int i = 0; i <methods.length ; i++) {
+            if (methods[i].isAnnotationPresent(BeforeSuite.class)){
+                before++;
+            }
+            if (methods[i].isAnnotationPresent(AfterSuite.class)){
+                after++;
+            }
+        }
+
+        System.out.println(before + " " + after);
+
         int temp = 1;
         while (temp <= 10){
             for (int i = 0; i <methods.length ; i++) {
