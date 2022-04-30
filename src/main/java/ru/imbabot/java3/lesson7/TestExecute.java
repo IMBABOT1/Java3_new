@@ -8,19 +8,20 @@ public class TestExecute {
 
     public static void start(Class c) {
         Method[] methods = c.getDeclaredMethods();
-        Map<Method, Integer> map = new HashMap<>();
-        for (Method m : methods){
-            if (m.isAnnotationPresent(Test.class)) {
-                map.put(m, m.getAnnotation(Test.class).priority());
-            }
-            if (m.isAnnotationPresent(BeforeSuite.class)) {
-                map.put(m, m.getAnnotation(BeforeSuite.class).priority());
-            }
-            if (m.isAnnotationPresent(AfterSuite.class)) {
-                map.put(m, m.getAnnotation(AfterSuite.class).priority());
+        int temp = 2;
+        while (temp <= 9){
+            for (int i = 0; i <methods.length ; i++) {
+              if (methods[i].isAnnotationPresent(Test.class) && methods[i].getAnnotation(Test.class).priority() == temp){
+                  System.out.println(methods[i].getName());
+                  temp++;
+              }
             }
         }
+
     }
+
+
+
 
 
 
