@@ -8,16 +8,22 @@ public class TestExecute {
 
     public static void start(Class c) {
         Method[] methods = c.getDeclaredMethods();
-        int[]arr = new int[methods.length];
-        for (int i = 0; i < methods.length ; i++) {
-            for (int j = 0; j < methods.length ; j++) {
-                if (methods[i].isAnnotationPresent(Test.class)){
-                    arr[i] = methods[i].getAnnotation(Test.class).priority();
-                }
+        Map<Method, Integer> map = new HashMap<>();
+        for (Method m : methods){
+            if (m.isAnnotationPresent(Test.class)) {
+                map.put(m, m.getAnnotation(Test.class).priority());
+            }
+            if (m.isAnnotationPresent(BeforeSuite.class)) {
+                map.put(m, m.getAnnotation(BeforeSuite.class).priority());
+            }
+            if (m.isAnnotationPresent(AfterSuite.class)) {
+                map.put(m, m.getAnnotation(AfterSuite.class).priority());
             }
         }
-        System.out.println(Arrays.toString(arr));
     }
+
+
+
 
     public static void main(String[] args) {
             start(Tests.class);
